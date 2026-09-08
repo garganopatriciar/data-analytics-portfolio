@@ -1,6 +1,6 @@
 # Patricia Gargano · Data Analytics Portfolio
 
-Analista de datos con base en salud digital, en transición hacia roles de **Data Analyst / Analytics Engineer**. Este repositorio reúne proyectos de práctica organizados por área de skill, con datasets no vinculados a mi trabajo actual (por confidencialidad), pero aplicando el mismo criterio técnico.
+Analista de datos con base en salud digital, en transición hacia roles de ** Analytics Engineer**. Este repositorio reúne proyectos de práctica organizados por área de skill, con datasets  aplicando el mismo criterio técnico que utilizo en mis tareas diarias.
 
 📫 **Contacto:** garganopatriciar@gmail.com · [LinkedIn](https://linkedin.com/in/patriciargargano)
 
@@ -28,14 +28,17 @@ Analista de datos con base en salud digital, en transición hacia roles de **Dat
 
 ## 🎓 Formación relevante
 
+- Licenciatura en Ciencias de Datos ( UCASAL, en curso)
 - Google Data Analytics Certification (2025)
 - Statistics for Data Analysis — UTN.BA (2025)
 - Data Analytics Degree — Digital House (2020-2021)
 - Software Development — BYU-Idaho (2023-2024)
+- Medicina (UBA, Facultad de Medicina, 2000-2006)
+- Patologia adultos / patologia pediatrica ( Hospital Durand 2009-2012; Hospital Garrahan 2012-2016)
 
 ## 💼 Experiencia
 
-Actualmente **Semisenior Health Data Analyst** en Uma Health (desde marzo 2022) — análisis de performance en salud digital, dashboards para stakeholders, y en formación en desarrollo de agentes de IA. El detalle completo está en mi [CV](https://linkedin.com/in/patriciargargano).
+Actualmente **Semisenior Health Data Analyst** en Uma Health (desde marzo 2022) — análisis de performance en salud digital, dashboards para stakeholders, y en formación en desarrollo de agentes de IA e ingenieria de datos. El detalle completo está en mi [CV](https://linkedin.com/in/patriciargargano).
 
 ---
 

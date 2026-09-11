@@ -1,0 +1,7 @@
+canal_segmento_key,canal,segmento_cliente
+1,Online,Consumidor
+2,Online,Empresa
+3,Online,Mayorista
+4,Tienda física,Consumidor
+5,Tienda física,Empresa
+6,Tienda física,Mayorista

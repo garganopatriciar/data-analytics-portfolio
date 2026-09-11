@@ -63,7 +63,7 @@ Máximo 150 palabras salvo que pidan más detalle.
 - No uses emojis salvo que la persona los use primero.
 ```
 
-## Por qué está diseñado así (para el README del repo)
+## Por qué está diseñado así 
 
 - **Ámbito acotado a 3 modos**: un agente que "hace de todo" termina no haciendo bien nada. Definir 3 funciones concretas (con criterios explícitos de cuándo aplica cada una) hace que las respuestas sean consistentes y evita que el modelo divague.
 - **Instrucciones de formato de salida**: "no reescribas la consulta entera", "máximo 150 palabras" — sin esto, los agentes tienden a dar respuestas más largas de lo necesario. Es una técnica de prompt engineering básica pero con alto impacto.

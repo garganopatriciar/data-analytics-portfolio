@@ -11,9 +11,10 @@ Analista de datos con base en salud digital, en transición hacia roles de ** An
 | Carpeta | Foco | Herramientas | Estado |
 |---|---|---|---|
 | [`01-data-analysis`](./01-data-analysis) | Limpieza, exploración e insights de datos | Python, pandas, Excel | ✅ |
-| [`02-data-visualization`](./02-data-visualization) | Dashboards y storytelling visual | Tableau / Power BI | 🔜 |
+| [`02-data-visualization`](./02-data-visualization) | Dashboards y storytelling visual | Looker Studio | 🔜 |
 | [`03-analisis-masivo-datos`](./03-analisis-masivo-datos) | SQL a escala sobre grandes volúmenes | BigQuery, SQL | ✅ |
-| [`04-analytics-engineering`](./04-analytics-engineering) | Modelado de datos y pipelines ELT | SQL, Python, modelado dimensional | ✅ | [`05-agentes-ia`]	(./05-agentes-ia) | Agente conversacional especializado en analítica | Gemini (Gems)| , prompt engineering | 🔜 |
+| [`04-analytics-engineering`](./04-analytics-engineering) | Modelado de datos y pipelines ELT | SQL, DuckDB, modelado dimensional | ✅|
+| [`05-agentes-ia`](./05-agentes-ia) | Agente conversacional especializado en analítica | Gemini (Gems), prompt engineering | ✅ |
 
 *(Los marcados 🔜 se van a ir completando — cada carpeta tiene su propio README con el detalle del proyecto)*
 

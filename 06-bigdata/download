@@ -1,0 +1,7 @@
+data/silver/
+data/gold/
+data/bench/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/*.csv

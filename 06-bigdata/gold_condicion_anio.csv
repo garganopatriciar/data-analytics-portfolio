@@ -1,0 +1,85 @@
+anio,icsap_nivel,icsap_condicion,egresos
+2022,ampliado,IRA superiores,9191
+2021,estricto,Epilepsia,3954
+2019,estricto,Gastroenteritis,25242
+2019,ampliado,Neumonia/Influenza,33114
+2020,estricto,Inmunoprevenibles,474
+2019,estricto,Epilepsia,4201
+2019,estricto,Inmunoprevenibles,895
+2020,ampliado,Neumonia/Influenza,23641
+2020,estricto,Asma,8198
+2020,estricto,Diabetes,10457
+2022,estricto,Epilepsia,5070
+2022,estricto,Asma,21119
+2022,estricto,Hipertension,28611
+2022,estricto,EPOC,18648
+2022,estricto,Inmunoprevenibles,423
+2021,estricto,Asma,11706
+2020,ampliado,Sist. urinario (proxy ITU),32432
+2020,estricto,Gastroenteritis,21415
+2020,estricto,Desnutricion,446
+2022,estricto,Gastroenteritis,23548
+2021,estricto,Gastroenteritis,19332
+2019,estricto,EPOC,12206
+2022,ampliado,Sist. urinario (proxy ITU),47795
+2021,estricto,Desnutricion,533
+2021,ampliado,Neumonia/Influenza,30282
+2019,estricto,Desnutricion,534
+2020,estricto,Hipertension,19890
+2020,estricto,EPOC,6305
+2020,estricto,Epilepsia,3636
+2020,ampliado,IRA superiores,10038
+2022,estricto,Diabetes,16146
+2022,estricto,Desnutricion,653
+2022,estricto,Tuberculosis,1784
+2021,ampliado,IRA superiores,8812
+2021,estricto,Diabetes,11023
+2021,estricto,EPOC,8491
+2021,estricto,Hipertension,20252
+2019,ampliado,IRA superiores,7119
+2021,ampliado,Sist. urinario (proxy ITU),34851
+2021,estricto,Tuberculosis,1529
+2019,estricto,Hipertension,22148
+2019,estricto,Asma,16267
+2019,estricto,Tuberculosis,1316
+2022,ampliado,Neumonia/Influenza,39181
+2021,estricto,Inmunoprevenibles,293
+2019,estricto,Diabetes,13738
+2019,ampliado,Sist. urinario (proxy ITU),38434
+2020,estricto,Tuberculosis,1146
+2017,estricto,Hipertension,18409
+2016,estricto,EPOC,14202
+2016,estricto,Hipertension,15802
+2016,estricto,Inmunoprevenibles,1103
+2018,estricto,Hipertension,20187
+2018,estricto,Diabetes,13039
+2017,estricto,Epilepsia,3296
+2016,estricto,Asma,9947
+2018,estricto,Tuberculosis,1311
+2018,estricto,Desnutricion,597
+2017,ampliado,Sist. urinario (proxy ITU),31868
+2017,estricto,Gastroenteritis,20743
+2017,estricto,Asma,9923
+2017,estricto,Diabetes,12411
+2017,estricto,Tuberculosis,1201
+2018,estricto,Asma,11216
+2016,estricto,Tuberculosis,1028
+2018,estricto,Gastroenteritis,21989
+2018,ampliado,IRA superiores,3291
+2018,ampliado,Neumonia/Influenza,29186
+2018,estricto,Epilepsia,3589
+2018,estricto,Inmunoprevenibles,821
+2017,ampliado,Neumonia/Influenza,30309
+2017,estricto,EPOC,11778
+2017,estricto,Desnutricion,714
+2017,ampliado,IRA superiores,3635
+2017,estricto,Inmunoprevenibles,930
+2016,ampliado,IRA superiores,3327
+2016,estricto,Diabetes,7904
+2018,ampliado,Sist. urinario (proxy ITU),34690
+2018,estricto,EPOC,9690
+2016,ampliado,Sist. urinario (proxy ITU),28348
+2016,ampliado,Neumonia/Influenza,28505
+2016,estricto,Desnutricion,628
+2016,estricto,Gastroenteritis,17884
+2016,estricto,Epilepsia,2948

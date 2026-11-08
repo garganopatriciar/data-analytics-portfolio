@@ -1,0 +1,214 @@
+grupo_edad,icsap_condicion,egresos,egresos_no_obst,pct_sobre_edad
+35-39,EPOC,2602,297590,0.87
+35-39,Gastroenteritis,7090,297590,2.38
+35-39,Inmunoprevenibles,39,297590,0.01
+35-39,Tuberculosis,780,297590,0.26
+35-39,Neumonia/Influenza,6220,297590,2.09
+35-39,Diabetes,2977,297590,1.0
+35-39,Asma,3102,297590,1.04
+35-39,Desnutricion,59,297590,0.02
+35-39,Epilepsia,1371,297590,0.46
+35-39,Sist. urinario (proxy ITU),16504,297590,5.55
+35-39,Hipertension,5483,297590,1.84
+35-39,IRA superiores,1972,297590,0.66
+00-04,Diabetes,522,819994,0.06
+00-04,Desnutricion,1963,819994,0.24
+00-04,IRA superiores,13538,819994,1.65
+00-04,Tuberculosis,276,819994,0.03
+00-04,Gastroenteritis,37188,819994,4.54
+00-04,Hipertension,181,819994,0.02
+00-04,Sist. urinario (proxy ITU),15103,819994,1.84
+00-04,Neumonia/Influenza,42591,819994,5.19
+00-04,Asma,18800,819994,2.29
+00-04,Epilepsia,5256,819994,0.64
+00-04,EPOC,8740,819994,1.07
+00-04,Inmunoprevenibles,3227,819994,0.39
+30-34,Diabetes,2531,303745,0.83
+30-34,Tuberculosis,893,303745,0.29
+30-34,Neumonia/Influenza,5830,303745,1.92
+30-34,IRA superiores,2324,303745,0.77
+30-34,Gastroenteritis,7643,303745,2.52
+30-34,Asma,3396,303745,1.12
+30-34,Desnutricion,56,303745,0.02
+30-34,Sist. urinario (proxy ITU),17598,303745,5.79
+30-34,EPOC,2372,303745,0.78
+30-34,Epilepsia,1499,303745,0.49
+30-34,Inmunoprevenibles,56,303745,0.02
+30-34,Hipertension,3855,303745,1.27
+40-44,Sist. urinario (proxy ITU),15855,307613,5.15
+40-44,Tuberculosis,750,307613,0.24
+40-44,Neumonia/Influenza,6972,307613,2.27
+40-44,Diabetes,4434,307613,1.44
+40-44,Desnutricion,72,307613,0.02
+40-44,Epilepsia,1148,307613,0.37
+40-44,Asma,2936,307613,0.95
+40-44,IRA superiores,1742,307613,0.57
+40-44,EPOC,3065,307613,1.0
+40-44,Inmunoprevenibles,38,307613,0.01
+40-44,Hipertension,8462,307613,2.75
+40-44,Gastroenteritis,6351,307613,2.06
+20-24,Inmunoprevenibles,82,338072,0.02
+20-24,IRA superiores,3056,338072,0.9
+20-24,Epilepsia,2166,338072,0.64
+20-24,Sist. urinario (proxy ITU),19261,338072,5.7
+20-24,Asma,4411,338072,1.3
+20-24,Gastroenteritis,9570,338072,2.83
+20-24,EPOC,2498,338072,0.74
+20-24,Neumonia/Influenza,5219,338072,1.54
+20-24,Diabetes,2561,338072,0.76
+20-24,Desnutricion,62,338072,0.02
+20-24,Tuberculosis,1029,338072,0.3
+20-24,Hipertension,2347,338072,0.69
+45-49,Tuberculosis,659,305857,0.22
+45-49,Sist. urinario (proxy ITU),14869,305857,4.86
+45-49,Inmunoprevenibles,36,305857,0.01
+45-49,IRA superiores,1387,305857,0.45
+45-49,Hipertension,11635,305857,3.8
+45-49,Diabetes,6107,305857,2.0
+45-49,Asma,2610,305857,0.85
+45-49,Epilepsia,1138,305857,0.37
+45-49,Gastroenteritis,5421,305857,1.77
+45-49,Desnutricion,68,305857,0.02
+45-49,EPOC,3378,305857,1.1
+45-49,Neumonia/Influenza,7584,305857,2.48
+05-09,IRA superiores,7724,281252,2.75
+05-09,Epilepsia,2987,281252,1.06
+05-09,Asma,23663,281252,8.41
+05-09,EPOC,1546,281252,0.55
+05-09,Tuberculosis,123,281252,0.04
+05-09,Neumonia/Influenza,11318,281252,4.02
+05-09,Gastroenteritis,18843,281252,6.7
+05-09,Desnutricion,411,281252,0.15
+05-09,Inmunoprevenibles,859,281252,0.31
+05-09,Hipertension,132,281252,0.05
+05-09,Sist. urinario (proxy ITU),7126,281252,2.53
+05-09,Diabetes,964,281252,0.34
+80+,Gastroenteritis,5764,409767,1.41
+80+,Sist. urinario (proxy ITU),21824,409767,5.33
+80+,Diabetes,4741,409767,1.16
+80+,IRA superiores,363,409767,0.09
+80+,Asma,937,409767,0.23
+80+,Hipertension,15785,409767,3.85
+80+,Tuberculosis,162,409767,0.04
+80+,Inmunoprevenibles,26,409767,0.01
+80+,Epilepsia,504,409767,0.12
+80+,Neumonia/Influenza,38096,409767,9.3
+80+,EPOC,8103,409767,1.98
+80+,Desnutricion,330,409767,0.08
+IGN,Asma,2,5211,0.04
+IGN,Gastroenteritis,3,5211,0.06
+IGN,IRA superiores,3,5211,0.06
+IGN,Neumonia/Influenza,9,5211,0.17
+IGN,Hipertension,37,5211,0.71
+IGN,Epilepsia,2,5211,0.04
+IGN,EPOC,174,5211,3.34
+IGN,Desnutricion,1,5211,0.02
+IGN,Diabetes,1,5211,0.02
+15-19,Diabetes,2101,265801,0.79
+15-19,Gastroenteritis,8059,265801,3.03
+15-19,Inmunoprevenibles,78,265801,0.03
+15-19,Tuberculosis,748,265801,0.28
+15-19,Sist. urinario (proxy ITU),14249,265801,5.36
+15-19,Asma,3714,265801,1.4
+15-19,Neumonia/Influenza,4084,265801,1.54
+15-19,IRA superiores,2733,265801,1.03
+15-19,EPOC,1858,265801,0.7
+15-19,Epilepsia,2211,265801,0.83
+15-19,Desnutricion,69,265801,0.03
+15-19,Hipertension,1353,265801,0.51
+55-59,Epilepsia,799,319912,0.25
+55-59,Hipertension,16820,319912,5.26
+55-59,Neumonia/Influenza,10365,319912,3.24
+55-59,Diabetes,10060,319912,3.14
+55-59,Gastroenteritis,4607,319912,1.44
+55-59,Asma,2086,319912,0.65
+55-59,EPOC,6739,319912,2.11
+55-59,Desnutricion,103,319912,0.03
+55-59,Sist. urinario (proxy ITU),14161,319912,4.43
+55-59,IRA superiores,950,319912,0.3
+55-59,Inmunoprevenibles,29,319912,0.01
+55-59,Tuberculosis,618,319912,0.19
+25-29,IRA superiores,2797,331224,0.84
+25-29,Hipertension,3019,331224,0.91
+25-29,Tuberculosis,1100,331224,0.33
+25-29,Gastroenteritis,8881,331224,2.68
+25-29,Desnutricion,47,331224,0.01
+25-29,EPOC,2503,331224,0.76
+25-29,Epilepsia,1757,331224,0.53
+25-29,Inmunoprevenibles,57,331224,0.02
+25-29,Asma,4041,331224,1.22
+25-29,Sist. urinario (proxy ITU),18693,331224,5.64
+25-29,Neumonia/Influenza,5618,331224,1.7
+25-29,Diabetes,2676,331224,0.81
+65-69,Inmunoprevenibles,27,325283,0.01
+65-69,Tuberculosis,383,325283,0.12
+65-69,Gastroenteritis,4044,325283,1.24
+65-69,Epilepsia,633,325283,0.19
+65-69,Hipertension,16656,325283,5.12
+65-69,Sist. urinario (proxy ITU),14035,325283,4.31
+65-69,Diabetes,10053,325283,3.09
+65-69,Desnutricion,104,325283,0.03
+65-69,IRA superiores,570,325283,0.18
+65-69,Asma,1358,325283,0.42
+65-69,EPOC,8956,325283,2.75
+65-69,Neumonia/Influenza,13859,325283,4.26
+10-14,Desnutricion,252,213837,0.12
+10-14,Diabetes,1933,213837,0.9
+10-14,Asma,11518,213837,5.39
+10-14,Sist. urinario (proxy ITU),5375,213837,2.51
+10-14,Tuberculosis,252,213837,0.12
+10-14,Neumonia/Influenza,5062,213837,2.37
+10-14,Inmunoprevenibles,296,213837,0.14
+10-14,IRA superiores,3761,213837,1.76
+10-14,Gastroenteritis,10181,213837,4.76
+10-14,EPOC,721,213837,0.34
+10-14,Hipertension,338,213837,0.16
+10-14,Epilepsia,2648,213837,1.24
+50-54,Hipertension,15273,307309,4.97
+50-54,Tuberculosis,552,307309,0.18
+50-54,Inmunoprevenibles,31,307309,0.01
+50-54,EPOC,4686,307309,1.52
+50-54,Gastroenteritis,5164,307309,1.68
+50-54,Asma,2349,307309,0.76
+50-54,Sist. urinario (proxy ITU),14128,307309,4.6
+50-54,Neumonia/Influenza,8749,307309,2.85
+50-54,IRA superiores,1072,307309,0.35
+50-54,Diabetes,7825,307309,2.55
+50-54,Desnutricion,87,307309,0.03
+50-54,Epilepsia,983,307309,0.32
+60-64,Hipertension,17891,336168,5.32
+60-64,Epilepsia,723,336168,0.22
+60-64,Diabetes,11184,336168,3.33
+60-64,Inmunoprevenibles,21,336168,0.01
+60-64,EPOC,8631,336168,2.57
+60-64,Tuberculosis,515,336168,0.15
+60-64,Gastroenteritis,4267,336168,1.27
+60-64,Desnutricion,100,336168,0.03
+60-64,Asma,1788,336168,0.53
+60-64,IRA superiores,680,336168,0.2
+60-64,Sist. urinario (proxy ITU),14326,336168,4.26
+60-64,Neumonia/Influenza,12544,336168,3.73
+70-74,Inmunoprevenibles,23,297186,0.01
+70-74,Asma,1001,297186,0.34
+70-74,Sist. urinario (proxy ITU),13389,297186,4.51
+70-74,Hipertension,14502,297186,4.88
+70-74,Neumonia/Influenza,14912,297186,5.02
+70-74,EPOC,8328,297186,2.8
+70-74,IRA superiores,437,297186,0.15
+70-74,Desnutricion,157,297186,0.05
+70-74,Gastroenteritis,3761,297186,1.27
+70-74,Epilepsia,485,297186,0.16
+70-74,Diabetes,8164,297186,2.75
+70-74,Tuberculosis,277,297186,0.09
+75-79,Neumonia/Influenza,15186,250595,6.06
+75-79,IRA superiores,304,250595,0.12
+75-79,Desnutricion,164,250595,0.07
+75-79,Diabetes,5884,250595,2.35
+75-79,Asma,664,250595,0.26
+75-79,Inmunoprevenibles,14,250595,0.01
+75-79,Tuberculosis,198,250595,0.08
+75-79,Epilepsia,384,250595,0.15
+75-79,Sist. urinario (proxy ITU),11922,250595,4.76
+75-79,EPOC,6420,250595,2.56
+75-79,Gastroenteritis,3316,250595,1.32
+75-79,Hipertension,11530,250595,4.6

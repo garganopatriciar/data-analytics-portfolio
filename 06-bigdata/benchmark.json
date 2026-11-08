@@ -1,0 +1,111 @@
+{
+  "tamanios": {
+    "x1_csv_MB": 192.8,
+    "x1_parquet_MB": 8.0,
+    "x1_filas": 1176558,
+    "x4_csv_MB": 771.1,
+    "x4_parquet_MB": 33.0,
+    "x4_filas": 4706232,
+    "x16_csv_MB": 3091.5,
+    "x16_parquet_MB": 136.5,
+    "x16_filas": 18824928
+  },
+  "corridas": [
+    {
+      "seg": 2.5,
+      "total": 594919,
+      "rss_mb": 153,
+      "factor": 1,
+      "motor": "pandas",
+      "filas": 1176558
+    },
+    {
+      "seg": 8.22,
+      "total": 594919,
+      "rss_mb": 41,
+      "factor": 1,
+      "motor": "spark_1_csv",
+      "filas": 1176558
+    },
+    {
+      "seg": 6.8,
+      "total": 594919,
+      "rss_mb": 41,
+      "factor": 1,
+      "motor": "spark_2_csv",
+      "filas": 1176558
+    },
+    {
+      "seg": 5.14,
+      "total": 594919,
+      "rss_mb": 41,
+      "factor": 1,
+      "motor": "spark_2_parquet",
+      "filas": 1176558
+    },
+    {
+      "seg": 9.37,
+      "total": 2379676,
+      "rss_mb": 317,
+      "factor": 4,
+      "motor": "pandas",
+      "filas": 4706232
+    },
+    {
+      "seg": 17.88,
+      "total": 2379676,
+      "rss_mb": 41,
+      "factor": 4,
+      "motor": "spark_1_csv",
+      "filas": 4706232
+    },
+    {
+      "seg": 12.81,
+      "total": 2379676,
+      "rss_mb": 41,
+      "factor": 4,
+      "motor": "spark_2_csv",
+      "filas": 4706232
+    },
+    {
+      "seg": 8.61,
+      "total": 2379676,
+      "rss_mb": 41,
+      "factor": 4,
+      "motor": "spark_2_parquet",
+      "filas": 4706232
+    },
+    {
+      "seg": 37.52,
+      "total": 9518704,
+      "rss_mb": 823,
+      "factor": 16,
+      "motor": "pandas",
+      "filas": 18824928
+    },
+    {
+      "seg": 60.24,
+      "total": 9518704,
+      "rss_mb": 40,
+      "factor": 16,
+      "motor": "spark_1_csv",
+      "filas": 18824928
+    },
+    {
+      "seg": 36.31,
+      "total": 9518704,
+      "rss_mb": 41,
+      "factor": 16,
+      "motor": "spark_2_csv",
+      "filas": 18824928
+    },
+    {
+      "seg": 23.28,
+      "total": 9518704,
+      "rss_mb": 41,
+      "factor": 16,
+      "motor": "spark_2_parquet",
+      "filas": 18824928
+    }
+  ]
+}

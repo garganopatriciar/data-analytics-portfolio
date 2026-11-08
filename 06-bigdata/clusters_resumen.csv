@@ -1,0 +1,5 @@
+cluster,municipios,egresos,pct_Asma,pct_EPOC,pct_Diabetes,pct_Hipertension,pct_Gastroenteritis,pct_65mas,letalidad_pct,razon_oe
+0,40,2223328,1.88,1.39,1.13,2.08,1.93,15.35,2.38,0.83
+1,4,324441,1.17,1.8,5.68,4.61,2.18,36.46,3.35,1.38
+2,37,505357,0.73,1.81,1.12,6.06,6.09,30.24,2.64,1.47
+3,50,884870,0.61,1.47,1.06,2.1,2.29,34.31,3.97,0.73

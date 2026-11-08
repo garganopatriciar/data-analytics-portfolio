@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>TFI ADM 2026 - Internaciones evitables PBA</title>
+<style>
+@page { size: A4; margin: 2.2cm 2.2cm 2.2cm 2.5cm;
+}
+body { font-family: "Times New Roman", "Liberation Serif", serif; font-size: 11.5pt; line-height: 1.42; color:#111; text-align: justify; hyphens: auto; }
+h1 { font-size: 17pt; text-align:center; margin: 0 0 4pt; line-height:1.2 }
+h2 { font-size: 13pt; color:#1d4f91; margin: 16pt 0 5pt; border-bottom: 1px solid #c9d6ea; padding-bottom:2pt; page-break-after: avoid }
+h3 { font-size: 11.5pt; margin: 10pt 0 3pt; page-break-after: avoid }
+p { margin: 0 0 6pt }
+.portada { text-align:center; padding-top: 3.5cm; page-break-after: always }
+.portada .inst { font-size: 12pt; line-height:1.5 }
+.portada .tit { font-size: 20pt; font-weight:bold; margin: 2.2cm 0 .5cm; line-height:1.25 }
+.portada .sub { font-size: 13pt; font-style: italic; margin-bottom: 2.5cm }
+.portada table { margin: 0 auto; font-size: 12pt; border:none }
+.portada td { border:none; padding: 3pt 10pt; text-align:left }
+.resumen { border-left: 3px solid #1d4f91; padding: 4pt 10pt; background:#f5f8fc; margin: 6pt 0 10pt }
+figure { margin: 8pt 0 10pt; text-align:center; page-break-inside: avoid }
+figure img { max-width: 100%; }
+figcaption { font-size: 9.5pt; color:#333; text-align: left; margin-top: 3pt }
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; margin: 4pt 0 8pt; page-break-inside: avoid }
+th, td { border: 1px solid #c7c7c7; padding: 2.5pt 5pt; text-align: left; vertical-align: top }
+th { background: #eaf0f8 }
+td.n, th.n { text-align: right; white-space: nowrap }
+.cap { font-size: 9.5pt; color:#333; margin: 8pt 0 2pt; font-weight: bold; page-break-after: avoid; break-after: avoid }
+code, .mono { font-family: "DejaVu Sans Mono", monospace; font-size: 8.8pt }
+pre { font-family: "DejaVu Sans Mono", monospace; font-size: 8pt; background:#f6f6f4; padding: 6pt; border:1px solid #e2e2dc; white-space: pre-wrap; page-break-inside: avoid }
+.refs p { padding-left: 1.27cm; text-indent: -1.27cm; text-align:left; font-size: 10.5pt }
+.nota { font-size: 9.5pt; color: #444 }
+.pb { page-break-before: always }
+ul, ol { margin: 0 0 6pt 0; padding-left: 18pt } li { margin-bottom: 2pt }
+</style></head><body>
+
+<div class="portada">
+  <div class="inst">Universidad Católica de Salta<br>Facultad de Ingeniería<br>Licenciatura en Ciencias de Datos<br>Cátedra de Análisis de Datos Masivos — Año 2026</div>
+  <div class="tit">Internaciones evitables en el sistema público de la Provincia de Buenos Aires:<br>un pipeline Big Data para orientar la telemedicina y la atención primaria</div>
+  <div class="sub">Trabajo Final Integrador — Modalidad A: Proyecto de aplicación práctica</div>
+  <table>
+    <tr><td><b>Estudiante:</b></td><td>Patricia Gargano</td></tr>
+    <tr><td><b>DNI:</b></td><td>27.729.018</td></tr>
+    <tr><td><b>Docente:</b></td><td>Prof. Gustavo Ramiro Rivadera</td></tr>
+    <tr><td><b>Fecha de entrega:</b></td><td>Noviembre de 2026</td></tr>
+    <tr><td><b>Repositorio:</b></td><td><span class="mono" style="font-size:9.5pt">github.com/garganopatriciar/data-analytics-portfolio/tree/main/06-bigdata</span></td></tr>
+  </table>
+</div>
+
+<h1>Internaciones evitables en el sistema público de la Provincia de Buenos Aires</h1>
+
+<div class="resumen"><p><b>Resumen.</b> Se diseñó e implementó un pipeline de datos masivos con arquitectura por capas (<i>bronze–silver–gold</i>) sobre Apache Spark para analizar 6,77 millones de egresos hospitalarios públicos de la Provincia de Buenos Aires (PBA) entre 2016 y 2022, publicados como 1,18 millones de registros agregados en siete archivos con dos esquemas incompatibles. Sobre los datos armonizados se aplicó el marco de Internaciones por Condiciones Sensibles al cuidado Ambulatorio (ICSAP), se estandarizó por edad a nivel municipal, se segmentaron los municipios con K-Means (Spark MLlib) y se replicó el cálculo central con el paradigma MapReduce (Hadoop Streaming y RDD), con validación cruzada exacta entre los tres motores. Entre el 10,4 % (definición estricta) y el 19,3 % (ampliada) de los egresos no obstétricos corresponden a condiciones potencialmente evitables; tras la pandemia, en 2022 estas internaciones superaron en 20 % el nivel de 2019, con aumentos de 53 % en EPOC y 30 % en asma. La razón observada/esperada municipal varía entre 0,21 y 2,15, y la variación no se explica por el envejecimiento (r = 0,08). Un experimento de escalabilidad (hasta 18,8 millones de registros) muestra que Spark sobre Parquet supera a pandas a partir de ~5 millones de registros con memoria acotada, y que Parquet reduce 23 veces el almacenamiento.</p>
+<p><b>Palabras clave:</b> Big Data; Apache Spark; MapReduce; salud pública; internaciones evitables; telemedicina.</p></div>
+
+<h2>1. Definición del problema</h2>
+<h3>1.1 Campo de aplicación y problemática</h3>
+<p>El campo elegido es la <b>salud pública y la gestión de servicios de salud</b>, con foco en la planificación de la telemedicina. Una parte de las internaciones hospitalarias corresponde a condiciones que, con atención primaria oportuna y seguimiento ambulatorio efectivo, no deberían requerir hospitalización: descompensaciones de asma, EPOC, diabetes o hipertensión, deshidratación por gastroenteritis o enfermedades inmunoprevenibles. La literatura las denomina <i>ambulatory care sensitive conditions</i> (Billings et al., 1993) y, en la tradición iberoamericana, ICSAP (Caminal Homar et al., 2003; Caminal et al., 2004). Su peso es un indicador indirecto de la capacidad resolutiva del primer nivel de atención y, por lo tanto, una señal de dónde la telemedicina (teleconsulta, telemonitoreo de crónicos, seguimiento post-alta) podría tener mayor impacto (Flodgren et al., 2015), en línea con el marco habilitado en Argentina por la Ley 27.553 (2020).</p>
+<p>El problema de datos es que la información de egresos existe y es pública, pero está fragmentada en archivos anuales con esquemas, codificaciones y rótulos heterogéneos, lo que impide responder de forma directa preguntas como: ¿cuánto pesan las internaciones evitables?, ¿cómo cambiaron con la pandemia?, ¿qué territorios tienen más internaciones evitables de las esperables por su estructura etaria? Integrar y procesar a escala estos registros administrativos es uno de los usos con mayor potencial del análisis de datos masivos en salud (Raghupathi &amp; Raghupathi, 2014).</p>
+<h3>1.2 Objetivos</h3>
+<p><b>General:</b> construir una solución reproducible y escalable de procesamiento de datos masivos que cuantifique las internaciones evitables en el sistema público de la PBA y genere evidencia para priorizar intervenciones de telemedicina y atención primaria.</p>
+<p><b>Específicos:</b> (1) integrar y armonizar las dos series de egresos 2016–2022 con controles de calidad trazables; (2) clasificar las causas según el marco ICSAP en dos niveles (estricto y ampliado); (3) analizar la evolución temporal y el perfil etario, incluyendo el efecto de la pandemia; (4) estimar razones observado/esperado estandarizadas por edad por municipio y segmentarlos con aprendizaje no supervisado; (5) contrastar el paradigma MapReduce con Spark y evaluar empíricamente la escalabilidad de la solución.</p>
+
+<h2>2. Identificación de los datos</h2>
+<p>La fuente es el conjunto <i>Egresos hospitalarios</i> del Ministerio de Salud de la PBA, publicado en el Portal de Datos Abiertos provincial con licencia abierta (Ministerio de Salud de la Provincia de Buenos Aires, s.f.). Cada registro informa, para un año, municipio y combinación de sexo, grupo de edad, causa (capítulo y agrupamiento CIE-10) y tipo de egreso, la <b>cantidad</b> de egresos. Al tratarse de datos agregados no contienen información personal identificable, lo que permite su uso sin riesgos de privacidad (Ley 25.326; Ley 26.529).</p>
+<p class="cap">Tabla 1. Caracterización de los archivos de origen (capa bronze)</p>
+<table>
+<tr><th>Archivo</th><th>Sep.</th><th class="n">Registros</th><th class="n">Egresos</th><th>Particularidades detectadas</th></tr>
+<tr><td>egresos-2016.csv</td><td>;</td><td class="n">152.288</td><td class="n">816.446</td><td>2.293 filas vacías (todas duplicadas entre sí); encabezado <span class="mono">muncipio_*</span></td></tr>
+<tr><td>egresos-2017 / 2018.csv</td><td>;</td><td class="n">314.590</td><td class="n">1.803.598</td><td>Esquema 2016–2020 (18 grupos de edad quinquenales)</td></tr>
+<tr><td>egresos-2019.csv</td><td>;</td><td class="n">165.192</td><td class="n">1.024.615</td><td>Typos en categorías (<i>Translado</i>, <i>Defuncion</i>) y encabezado</td></tr>
+<tr><td>egresos-2020.csv</td><td>;</td><td class="n">158.920</td><td class="n">912.353</td><td>Aparece la causa COVID-19</td></tr>
+<tr><td>egresos-hospitalarios-2021/2022.csv</td><td>,</td><td class="n">387.861</td><td class="n">2.211.603</td><td>Nueva serie: 25 grupos de edad (días, meses, años simples), rótulos en mayúsculas, causas reagrupadas, sexo "Sin especificar"</td></tr>
+<tr><th>Total</th><th></th><th class="n">1.178.851</th><th class="n">6.768.615</th><th>174 MB CSV; 133 municipios, 12 regiones sanitarias, 127 rótulos de causa distintos antes de armonizar</th></tr>
+</table>
+<p>En términos de las "V" de Big Data (Laney, 2001; Gandomi &amp; Haider, 2015; Joyanes Aguilar, 2012), el volumen de este recorte publicado es moderado, pero el problema exhibe con claridad <b>variedad</b> (dos esquemas, separadores y codificaciones distintas), <b>variabilidad</b> (la fuente cambió de estructura en 2021: nuevos grupos de edad, causas reagrupadas y rótulos distintos para las mismas categorías) y <b>veracidad</b> (nulos, duplicados, errores tipográficos, 10 % de egresos codificados como "síntomas y signos mal definidos"). El <b>volumen</b> real del problema es mayor: los datos están pre-agregados; los microdatos nominales (un registro por egreso, con diagnóstico CIE-10 completo, días de estada y establecimiento) multiplicarían por varias veces el tamaño, y su extensión al nivel nacional o su combinación con eventos de plataformas de telemedicina (consultas, mediciones de telemonitoreo) incorpora además <b>velocidad</b>. Por ese motivo la solución se diseñó para escalar y se evaluó empíricamente con volúmenes de hasta 16 veces el original (sección 6).</p>
+<p>Según la clasificación del grupo de trabajo de Big Data del NIST, el escenario corresponde al <b>Tipo 2</b>: los datos son estructurados (no requieren un modelo no relacional), pero su procesamiento a la escala real del problema requiere <b>escalabilidad horizontal</b>. Por la misma razón no se utilizó una base NoSQL: para datos tabulares de lectura analítica, un formato columnar distribuido como Parquet resulta más adecuado; una base NoSQL documental tendría sentido al incorporar eventos semiestructurados de plataformas de telemedicina.</p>
+
+<h2>3. Diseño de la solución</h2>
+<p>Se adoptó una arquitectura por capas tipo <i>medallion</i>, una evolución del <i>data lake</i> que separa datos crudos, depurados y analíticos (Armbrust et al., 2021). La Figura 1 resume el flujo; cada etapa es un script independiente y re-ejecutable. El diseño sigue los pasos del proceso de análisis de datos masivos (Joyanes Aguilar, 2012): <b>recopilación</b> (capa bronze), <b>procesamiento</b> distribuido (capa silver), <b>análisis</b> (capa gold, SQL y MLlib), <b>visualización</b> e <b>interpretación</b> (secciones 5 y 6). Se trata de un <b>procesamiento por lotes</b> (<i>batch</i>), adecuado porque la fuente se publica con frecuencia anual; el procesamiento por flujos queda como línea de continuidad.</p>
+<figure><img src="../outputs/figuras/fig1_arquitectura.png"><figcaption><b>Figura 1.</b> Arquitectura del pipeline. Las capas bronze/silver/gold se implementan sobre sistema de archivos local, equivalente funcional de directorios HDFS en un despliegue en clúster.</figcaption></figure>
+<ul>
+<li><b>Adquisición (bronze):</b> descarga idempotente vía HTTP desde el catálogo CKAN del portal, con sumas SHA-256 para garantizar la trazabilidad de la versión analizada. Los archivos se conservan inmutables (principio <i>write once, read many</i> de HDFS; Shvachko et al., 2010).</li>
+<li><b>Preparación (silver):</b> Spark detecta el separador, corrige encabezados, armoniza categorías (normalización de texto, tipos de egreso, sexo), <b>reconcilia los grupos de edad</b> de la serie nueva con los quinquenios de la anterior y elimina nulos y duplicados; es decir, aplica las técnicas de preprocesamiento de <b>limpieza</b>, <b>integración</b> y <b>transformación</b> de datos (Casas Roma et al., 2019). Se persiste en <b>Parquet columnar particionado por año</b>, lo que habilita <i>partition pruning</i> y <i>predicate pushdown</i>.</li>
+<li><b>Procesamiento y análisis (gold):</b> Spark SQL y API de DataFrames con funciones ventana (<span class="mono">LAG</span>, <span class="mono">DENSE_RANK</span>, estadísticos sobre ventana global) y <i>broadcast joins</i> (Armbrust et al., 2015); segmentación con MLlib (Meng et al., 2016).</li>
+<li><b>Validación por paradigma alternativo:</b> el indicador central se recalcula con MapReduce clásico (Dean &amp; Ghemawat, 2008) directamente desde la capa bronze, para verificar que la armonización no introdujo errores.</li>
+</ul>
+<p><b>Justificación tecnológica.</b> Se eligió Spark por sobre MapReduce/Hadoop como motor principal porque el análisis es iterativo (exploración, múltiples agregaciones y un algoritmo de clustering que recorre los datos varias veces), y el modelo en memoria de Spark evita materializar en disco cada etapa intermedia (Zaharia et al., 2016). Spark ofrece además en un único motor SQL, procesamiento distribuido y aprendizaje automático. MapReduce se mantiene como mecanismo de validación y por su valor didáctico para explicitar las fases <i>map</i>, <i>shuffle/sort</i> y <i>reduce</i>. Parquet se eligió frente a CSV por la compresión columnar y la lectura selectiva de columnas. La ejecución se realizó en modo <span class="mono">local[*]</span> (2 núcleos, 7 GB de RAM), donde el <i>driver</i> y los <i>executors</i> de Spark corren en una misma máquina; el mismo código se ejecuta sin cambios en un clúster administrado por YARN, que asigna los recursos y distribuye las tareas entre los nodos.</p>
+<p><b>Gobierno de los datos.</b> Aunque se trata de un prototipo, se aplicaron cuatro de las disciplinas de gobierno de Big Data propuestas por Soares (2012): <b>calidad</b> (reporte de calidad por archivo y control de conservación de masa), <b>metadatos</b> (diccionario ICSAP auditado y checksums de cada versión), <b>privacidad</b> (uso exclusivo de datos agregados, sin información personal) y <b>gestión del ciclo de vida</b> (capas inmutables bronze, silver y gold con trazabilidad entre ellas).</p>
+
+<h2>4. Implementación</h2>
+<h3>4.1 Ingesta y calidad de datos</h3>
+<p>El script <span class="mono">01_ingesta_silver.py</span> unifica las siete fuentes con <span class="mono">unionByName</span> tras normalizar el esquema. Las decisiones de armonización relevantes fueron: (a) agrupar las edades granulares de 2021–2022 (0 a 6 días, 7 a 27 días, 28 días a 11 meses, 1 a 4 años) en el quinquenio 00–04 y los grupos 80–84 y 85+ en 80+; (b) cuando la serie vieja informa el agrupamiento "Todos", usar el capítulo CIE-10 como causa; (c) asignar a cada código INDEC de municipio un nombre canónico, ya que el mismo partido aparece escrito de formas distintas entre años. Se eliminaron 2.293 filas nulas de 2016. El control de conservación de masa confirma que la suma de egresos en silver (6.768.615) coincide exactamente con la de los archivos originales. La capa silver ocupa 4 MB frente a 174 MB de CSV.</p>
+<h3>4.2 Clasificación ICSAP</h3>
+<p>Dado que los datos publicados no incluyen el código CIE-10 a 3–4 caracteres, se adaptó la lista de Caminal Homar et al. (2003) a los agrupamientos disponibles mediante un diccionario de expresiones regulares (Tabla 2). El nivel <b>estricto</b> incluye condiciones cuya correspondencia es directa; el <b>ampliado</b> suma neumonía/influenza, enfermedades del sistema urinario (como aproximación a la infección urinaria) e infecciones respiratorias altas, cuyos agrupamientos incluyen también casos no evitables. La insuficiencia cardíaca, ICSAP clásica, no pudo aislarse porque está incluida en "demás enfermedades cardíacas". Todas las asignaciones quedan auditadas en el archivo <span class="mono">outputs/gold_mapeo_icsap.csv</span> del repositorio.</p>
+<p class="cap">Tabla 2. Condiciones ICSAP y egresos acumulados 2016–2022</p>
+<table>
+<tr><th>Nivel</th><th>Condición</th><th class="n">Egresos</th><th>Nivel</th><th>Condición</th><th class="n">Egresos</th></tr>
+<tr><td>Estricto</td><td>Gastroenteritis infecciosa</td><td class="n">150.153</td><td>Estricto</td><td>Tuberculosis</td><td class="n">9.315</td></tr>
+<tr><td>Estricto</td><td>Hipertensión</td><td class="n">145.299</td><td>Estricto</td><td>Inmunoprevenibles</td><td class="n">4.939</td></tr>
+<tr><td>Estricto</td><td>Asma</td><td class="n">88.376</td><td>Estricto</td><td>Desnutrición</td><td class="n">4.105</td></tr>
+<tr><td>Estricto</td><td>Diabetes mellitus</td><td class="n">84.718</td><td>Ampliado</td><td>Sist. urinario (proxy ITU)</td><td class="n">248.418</td></tr>
+<tr><td>Estricto</td><td>EPOC</td><td class="n">81.320</td><td>Ampliado</td><td>Neumonía / influenza</td><td class="n">214.218</td></tr>
+<tr><td>Estricto</td><td>Epilepsia</td><td class="n">26.694</td><td>Ampliado</td><td>IRA superiores</td><td class="n">45.413</td></tr>
+</table>
+<h3>4.3 Indicadores y estandarización por edad</h3>
+<p>El indicador principal es el porcentaje de egresos ICSAP sobre egresos <b>no obstétricos</b> (se excluyen embarazo, parto y puerperio, que no son sensibles al cuidado ambulatorio y distorsionan la comparación entre territorios). Como el municipio publicado no permite construir tasas poblacionales confiables (sección 6), se aplicó una <b>estandarización indirecta por edad</b>: para cada municipio se calcula el número esperado de ICSAP aplicando a su distribución etaria de egresos la proporción ICSAP provincial de cada grupo de edad, y se obtiene la razón observado/esperado (O/E). Una razón de 1,5 indica 50 % más internaciones evitables de las que corresponderían a su estructura etaria. Para el análisis municipal se usaron los años 2017–2019 y 2022, excluyendo 2020–2021 (distorsión pandémica) y la causa COVID-19, y municipios con menos de 1.000 egresos (131 municipios analizados).</p>
+<h3>4.4 MapReduce y validación cruzada</h3>
+<p>Se implementó un <i>mapper</i> y un <i>reducer</i> compatibles con Hadoop Streaming que leen directamente los CSV crudos de ambas series y emiten pares <span class="mono">(año|nivel_ICSAP, cantidad)</span>. Se ejecutaron localmente simulando las cuatro fases de un <i>job</i> MapReduce, <span class="mono">Map → Shuffle → Sort → Reduce</span> (37 s); en un clúster Hadoop, el <i>shuffle</i> y el <i>sort</i> los realiza el framework y YARN distribuye las tareas map y reduce entre los nodos. Con la misma lógica se ejecutó sobre RDD de Spark (10 s): <span class="mono">map</span> y <span class="mono">reduceByKey</span> son <b>transformaciones</b> de evaluación perezosa que sólo construyen el grafo de ejecución (DAG), y la <b>acción</b> <span class="mono">collect</span> dispara el cálculo; <span class="mono">reduceByKey</span> además combina localmente en cada partición antes del <i>shuffle</i>. Los tres motores (DataFrames, Hadoop Streaming y RDD) arrojaron <b>exactamente los mismos totales</b> para cada año, lo que valida de forma independiente la armonización de la capa silver.</p>
+<pre># mapper.py (extracto) — emite clave/valor por línea cruda
+anio, cap, agr, q = f[0], norm(f[6]), norm(f[7]), int(f[9])
+causa = cap if agr == "TODOS" else agr
+nivel = next((n for n, rx in RX if rx.search(causa)), "otro")
+print(f"{anio}|{nivel}\t{q}")</pre>
+<h3>4.5 Segmentación de municipios (MLlib)</h3>
+<p>Se construyó un vector de 8 variables por municipio: participación de asma, EPOC, diabetes, hipertensión y gastroenteritis; porcentaje de egresos de 65 años y más; letalidad hospitalaria y razón O/E. Tras estandarizar (<span class="mono">StandardScaler</span>) se ajustó K-Means para k = 2 a 8 y se evaluó con el coeficiente de silueta (Rousseeuw, 1987). El máximo se obtuvo con k = 2 (0,61), pero esa partición sólo separa grandes centros urbanos del interior; se eligió k = 4 (silueta 0,35, máximo para k ≥ 3) por ser más accionable para la planificación.</p>
+
+<h2>5. Análisis de resultados</h2>
+<h3>5.1 Magnitud y evolución temporal</h3>
+<p>En el período 2016–2022 se registraron 594.919 ICSAP estrictas, el <b>10,4 %</b> de los 5,72 millones de egresos no obstétricos; con la definición ampliada, 1,10 millones (<b>19,3 %</b>). La proporción fue muy estable entre 2016 y 2019 (10,8–11,1 %), cayó en 2020 (9,4 %) y 2021 (8,4 %) y repuntó en 2022 al máximo de la serie (11,4 %; Figura 2).</p>
+<figure><img src="../outputs/figuras/fig2_serie_anual.png"><figcaption><b>Figura 2.</b> Egresos anuales (izquierda) y proporción de ICSAP sobre egresos no obstétricos (derecha). La caída de 2020–2021 refleja tanto la menor demanda de internaciones no-COVID como el desplazamiento de camas hacia COVID-19.</figcaption></figure>
+<p>La Figura 4 muestra que el repunte de 2022 no es homogéneo. Respecto de 2019, las internaciones por <b>EPOC crecieron 53 %</b>, <b>asma 30 %</b>, <b>hipertensión 29 %</b> y <b>diabetes 18 %</b>, mientras que el total de egresos creció 12,5 %. En cambio, gastroenteritis (−7 %) e inmunoprevenibles (−53 %) bajaron. Una interpretación consistente es que la <b>discontinuidad del seguimiento ambulatorio de pacientes crónicos durante 2020–2021</b> se tradujo en descompensaciones posteriores, aunque el incremento respiratorio de 2022 también puede reflejar la circulación viral atípica de ese año; los datos anuales no permiten separar ambos efectos.</p>
+<figure><img src="../outputs/figuras/fig4_indice_condiciones.png"><figcaption><b>Figura 4.</b> Evolución de las principales condiciones ICSAP estrictas, índice base 2019 = 100.</figcaption></figure>
+<h3>5.2 Perfil etario</h3>
+<p>La Figura 3 muestra dos poblaciones objetivo bien diferenciadas. En la <b>niñez</b> predominan asma (8 % de los egresos no obstétricos de 5 a 9 años), gastroenteritis y neumonía; en <b>adultos de 45 años y más</b>, hipertensión (4–5 %), diabetes (3 % entre 55 y 69 años), EPOC y, en mayores de 80, neumonía (9 %). Esto sugiere estrategias distintas: telemonitoreo y educación para crónicos cardiometabólicos y respiratorios en adultos, y teleconsulta pediátrica de demanda espontánea con pautas de hidratación y control del asma en niños.</p>
+<figure><img src="../outputs/figuras/fig3_heatmap_edad.png"><figcaption><b>Figura 3.</b> Peso de cada condición ICSAP sobre los egresos no obstétricos de cada grupo de edad (acumulado 2016–2022). Se rotulan las celdas ≥ 3 %.</figcaption></figure>
+<h3>5.3 Variación territorial y segmentación</h3>
+<p>La razón O/E municipal tiene mediana 0,89 y rango 0,21–2,15; 18 municipios superan 1,5. La correlación entre la proporción de ICSAP y el envejecimiento de los egresos es muy baja (r = 0,11 cruda; r = 0,08 para la razón estandarizada), lo que indica que <b>la heterogeneidad territorial no se explica por la estructura etaria</b> sino por otros factores (acceso y capacidad del primer nivel, prácticas de internación y de codificación). Los valores más altos se observan en Carlos Tejedor (2,15), Castelli (1,98), San Cayetano (1,96), Villarino (1,96) y Berazategui (1,88), este último relevante por su volumen (82.145 egresos).</p>
+<figure><img src="../outputs/figuras/fig5_municipios_clusters.png"><figcaption><b>Figura 5.</b> Razón ICSAP observada/esperada (estandarizada por edad) frente al porcentaje de egresos de 65+ años, coloreado por clúster K-Means. La línea punteada marca O/E = 1.</figcaption></figure>
+<p class="cap">Tabla 3. Perfil medio de los clústeres (promedio de municipios; % sobre egresos no obstétricos)</p>
+<table>
+<tr><th>Clúster</th><th class="n">Munic.</th><th class="n">Egresos</th><th class="n">HTA</th><th class="n">Diab.</th><th class="n">Gastro.</th><th class="n">Asma</th><th class="n">65+</th><th class="n">Letal.</th><th class="n">O/E</th><th>Ejemplos</th></tr>
+<tr><td>C0 Urbano joven</td><td class="n">40</td><td class="n">2.223.328</td><td class="n">2,1</td><td class="n">1,1</td><td class="n">1,9</td><td class="n">1,9</td><td class="n">15,4</td><td class="n">2,4</td><td class="n">0,83</td><td>La Matanza, La Plata, Merlo</td></tr>
+<tr><td>C1 Cardiometabólico</td><td class="n">4</td><td class="n">324.441</td><td class="n">4,6</td><td class="n">5,7</td><td class="n">2,2</td><td class="n">1,2</td><td class="n">36,5</td><td class="n">3,4</td><td class="n">1,38</td><td>Malvinas Argentinas, Lobos, Navarro</td></tr>
+<tr><td>C2 Brecha ambulatoria</td><td class="n">37</td><td class="n">505.357</td><td class="n">6,1</td><td class="n">1,1</td><td class="n">6,1</td><td class="n">0,7</td><td class="n">30,2</td><td class="n">2,6</td><td class="n">1,47</td><td>La Costa, San Pedro, Tres Arroyos</td></tr>
+<tr><td>C3 Envejecido, baja ICSAP</td><td class="n">50</td><td class="n">884.870</td><td class="n">2,1</td><td class="n">1,1</td><td class="n">2,3</td><td class="n">0,6</td><td class="n">34,3</td><td class="n">4,0</td><td class="n">0,73</td><td>Lanús, Vicente López, Olavarría</td></tr>
+</table>
+<p>El clúster <b>C2</b> (37 municipios, mayoritariamente del interior) concentra la mayor brecha: razón O/E de 1,47 con hipertensión y gastroenteritis unas tres veces más frecuentes que en los clústeres C0 y C3. Es el candidato natural para un programa de telemonitoreo de hipertensión y teleconsulta de guardia. <b>C1</b> combina diabetes e hipertensión elevadas en una población envejecida, con perfil para seguimiento remoto de crónicos. <b>C3</b>, aunque envejecido y con mayor letalidad, presenta pocas internaciones evitables, lo que sugiere que concentra casuística compleja (hospitales de referencia).</p>
+
+<h2>6. Evaluación y conclusiones</h2>
+<h3>6.1 Rendimiento y escalabilidad</h3>
+<p>Para evaluar si la solución escala se replicó la capa silver ×1, ×4 y ×16 (de 1,2 a 18,8 millones de registros) y se ejecutó la misma consulta (filtro por regex ICSAP y agregación por año y región) en procesos aislados (Tabla 4, Figura 6).</p>
+<p class="cap">Tabla 4. Tiempo de la consulta (segundos) y memoria pico de pandas</p>
+<table>
+<tr><th>Escala</th><th class="n">Registros</th><th class="n">pandas</th><th class="n">RAM pandas</th><th class="n">Spark CSV 1 núcleo</th><th class="n">Spark CSV 2 núcleos</th><th class="n">Spark Parquet 2 núcleos</th><th class="n">CSV / Parquet (MB)</th></tr>
+<tr><td>×1</td><td class="n">1.176.558</td><td class="n">2,5</td><td class="n">153 MB</td><td class="n">8,2</td><td class="n">6,8</td><td class="n">5,1</td><td class="n">193 / 8</td></tr>
+<tr><td>×4</td><td class="n">4.706.232</td><td class="n">9,4</td><td class="n">317 MB</td><td class="n">17,9</td><td class="n">12,8</td><td class="n">8,6</td><td class="n">771 / 33</td></tr>
+<tr><td>×16</td><td class="n">18.824.928</td><td class="n">37,5</td><td class="n">823 MB</td><td class="n">60,2</td><td class="n">36,3</td><td class="n">23,3</td><td class="n">3.092 / 137</td></tr>
+</table>
+<figure><img src="../outputs/figuras/fig6_benchmark.png"><figcaption><b>Figura 6.</b> Tiempo de ejecución según volumen y motor (izquierda) y tamaño en disco por formato (derecha).</figcaption></figure>
+<p>Los resultados muestran tres hechos. (1) Con el volumen original, <b>pandas es 2 veces más rápido</b> que Spark: el costo fijo de inicializar la JVM y planificar tareas domina. (2) El tiempo de pandas crece linealmente y su memoria también (×5,4 entre ×1 y ×16), lo que lo acota a lo que entra en la RAM de una máquina, que es precisamente la limitación de las herramientas tradicionales frente a los datos masivos; Spark procesa por particiones con memoria del <i>executor</i> fija y, sobre Parquet, ya es <b>1,6 veces más rápido</b> que pandas con 18,8 millones de registros. (3) Pasar de 1 a 2 núcleos reduce el tiempo 40 % (aceleración 1,66 sobre 2 ideal) y Parquet reduce el almacenamiento <b>23 veces</b> y el tiempo 36 % frente a CSV. La tendencia indica que con microdatos o datos nacionales, donde el volumen supera la memoria de un nodo, el enfoque distribuido deja de ser opcional.</p>
+<h3>6.2 Ventajas, limitaciones y mejoras</h3>
+<p><b>Ventajas.</b> El pipeline es reproducible de punta a punta con un solo comando, trazable (checksums, reporte de calidad, auditoría del mapeo ICSAP), validado por tres motores independientes y portable a clúster sin cambios de código.</p>
+<p><b>Limitaciones.</b> (a) La granularidad de los agrupamientos obliga a una adaptación aproximada del marco ICSAP: la definición estricta probablemente subestima (falta insuficiencia cardíaca) y la ampliada sobreestima. (b) Los datos cubren sólo establecimientos públicos que reportan al sistema provincial y no se sabe con certeza si el municipio corresponde a la residencia del paciente o al establecimiento; casos como Malvinas Argentinas, con 40 % de egresos de 65+ años, sugieren efecto de hospitales de referencia, y algunos municipios con razón O/E muy baja (p. ej., General Pueyrredón) podrían reflejar cobertura incompleta. Por eso no se calcularon tasas poblacionales. (c) Son egresos, no personas: un paciente reinternado cuenta varias veces. (d) La calidad de codificación es desigual (10 % de causas mal definidas). (e) El benchmark se ejecutó en una sola máquina de 2 núcleos; la escalabilidad horizontal real debería medirse en un clúster.</p>
+<p><b>Mejoras y continuidad.</b> Incorporar microdatos con CIE-10 completo para aplicar la lista ICSAP exacta y medir reinternaciones; integrar proyecciones de población del INDEC para obtener tasas; sumar datos de oferta del primer nivel (centros de salud, profesionales) para explicar la variación territorial; y, en un contexto de telemedicina, incorporar en <i>streaming</i> (Spark Structured Streaming o Kafka) los eventos de teleconsulta y telemonitoreo para evaluar si los programas reducen las ICSAP en los municipios intervenidos frente a controles.</p>
+<h3>6.3 Conclusiones</h3>
+<p>Entre uno de cada diez y uno de cada cinco egresos no obstétricos del sistema público bonaerense corresponde a condiciones que una atención ambulatoria oportuna podría evitar. El aumento posterior a la pandemia, concentrado en EPOC, asma, hipertensión y diabetes, es coherente con un deterioro del seguimiento de crónicos, el tipo de problema que la telemedicina aborda de forma más directa. La variación territorial, que no se explica por la edad, identifica un grupo de 37 municipios del interior con una brecha ambulatoria marcada, priorizable para programas de telemonitoreo y teleconsulta. Desde el punto de vista técnico, el trabajo muestra que en datos de salud el principal desafío de Big Data no fue sólo el volumen sino la <b>variedad y la veracidad</b>: la mayor parte del esfuerzo fue armonizar series heterogéneas con controles verificables. Al mismo tiempo, el benchmark muestra que la elección de Spark y Parquet no se justifica por el tamaño actual del recorte público sino por la escala del problema real, y que reconocer ese punto de quiebre es parte de una decisión de arquitectura fundamentada.</p>
+<p class="nota"><b>Vinculación con la asignatura.</b> <b>Unidad II (Datos Masivos y Big Data):</b> características de los datos masivos (las V), clasificación del NIST, arquitectura por capas, gobierno de datos y justificación frente a NoSQL (secciones 2 y 3). <b>Unidad III (Infraestructura y herramientas):</b> almacenamiento inmutable tipo HDFS, paradigma MapReduce con sus fases y Hadoop Streaming, Spark (driver, executors, RDD, transformaciones y acciones, Spark SQL, MLlib) (secciones 3 y 4). <b>Unidad IV (Proceso de análisis de datos masivos):</b> etapas del proceso, procesamiento por lotes, preprocesamiento (limpieza, integración, transformación), desafíos de calidad y privacidad, PySpark y limitaciones de pandas frente a datos masivos (secciones 4 a 6).</p>
+
+<h2>Referencias</h2>
+<div class="refs">
+<p>Armbrust, M., Ghodsi, A., Xin, R., &amp; Zaharia, M. (2021). Lakehouse: A new generation of open platforms that unify data warehousing and advanced analytics. En <i>Proceedings of the 11th Conference on Innovative Data Systems Research (CIDR)</i>.</p>
+<p>Armbrust, M., Xin, R. S., Lian, C., Huai, Y., Liu, D., Bradley, J. K., Meng, X., Kaftan, T., Franklin, M. J., Ghodsi, A., &amp; Zaharia, M. (2015). Spark SQL: Relational data processing in Spark. En <i>Proceedings of the 2015 ACM SIGMOD International Conference on Management of Data</i> (pp. 1383–1394). https://doi.org/10.1145/2723372.2742797</p>
+<p>Billings, J., Zeitel, L., Lukomnik, J., Carey, T. S., Blank, A. E., &amp; Newman, L. (1993). Impact of socioeconomic status on hospital use in New York City. <i>Health Affairs, 12</i>(1), 162–173. https://doi.org/10.1377/hlthaff.12.1.162</p>
+<p>Caminal, J., Starfield, B., Sánchez, E., Casanova, C., &amp; Morales, M. (2004). The role of primary care in improving health care outcomes: Ambulatory care sensitive conditions. <i>European Journal of Public Health, 14</i>(3), 246–251. https://doi.org/10.1093/eurpub/14.3.246</p>
+<p>Caminal Homar, J., Morales Espinoza, M., Sánchez Ruiz, E., Cubells Larrosa, M. J., &amp; Bustins Poblet, M. (2003). Hospitalizaciones prevenibles mediante una atención primaria oportuna y efectiva. <i>Atención Primaria, 31</i>(1), 6–17.</p>
+<p>Casas Roma, J., Nin Guerrero, J., &amp; Julbe López, F. (2019). <i>Big data: Análisis de datos en entornos masivos</i>. Editorial UOC.</p>
+<p>Dean, J., &amp; Ghemawat, S. (2008). MapReduce: Simplified data processing on large clusters. <i>Communications of the ACM, 51</i>(1), 107–113. https://doi.org/10.1145/1327452.1327492</p>
+<p>Flodgren, G., Rachas, A., Farmer, A. J., Inzitari, M., &amp; Shepperd, S. (2015). Interactive telemedicine: Effects on professional practice and health care outcomes. <i>Cochrane Database of Systematic Reviews</i>, (9), CD002098. https://doi.org/10.1002/14651858.CD002098.pub2</p>
+<p>Gandomi, A., &amp; Haider, M. (2015). Beyond the hype: Big data concepts, methods, and analytics. <i>International Journal of Information Management, 35</i>(2), 137–144. https://doi.org/10.1016/j.ijinfomgt.2014.10.007</p>
+<p>Joyanes Aguilar, L. (2012). <i>Big data: Análisis de grandes volúmenes de datos en organizaciones</i>. Alfaomega.</p>
+<p>Laney, D. (2001). <i>3D data management: Controlling data volume, velocity and variety</i>. META Group.</p>
+<p>Ley 25.326 de Protección de los Datos Personales. (2000). Boletín Oficial de la República Argentina.</p>
+<p>Ley 26.529 de Derechos del Paciente en su Relación con los Profesionales e Instituciones de la Salud. (2009). Boletín Oficial de la República Argentina.</p>
+<p>Ley 27.553 de Recetas Electrónicas o Digitales. (2020). Boletín Oficial de la República Argentina.</p>
+<p>Meng, X., Bradley, J., Yavuz, B., Sparks, E., Venkataraman, S., Liu, D., Freeman, J., Tsai, D. B., Amde, M., Owen, S., Xin, D., Xin, R., Franklin, M. J., Zadeh, R., Zaharia, M., &amp; Talwalkar, A. (2016). MLlib: Machine learning in Apache Spark. <i>Journal of Machine Learning Research, 17</i>(34), 1–7.</p>
+<p>Ministerio de Salud de la Provincia de Buenos Aires. (s.f.). <i>Egresos hospitalarios</i> [Conjunto de datos]. Portal de Datos Abiertos de la Provincia de Buenos Aires. Recuperado el 7 de noviembre de 2026, de https://catalogo.datos.gba.gob.ar/dataset/egresos-hospitalarios</p>
+<p>Raghupathi, W., &amp; Raghupathi, V. (2014). Big data analytics in healthcare: Promise and potential. <i>Health Information Science and Systems, 2</i>, Artículo 3. https://doi.org/10.1186/2047-2501-2-3</p>
+<p>Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. <i>Journal of Computational and Applied Mathematics, 20</i>, 53–65. https://doi.org/10.1016/0377-0427(87)90125-7</p>
+<p>Shvachko, K., Kuang, H., Radia, S., &amp; Chansler, R. (2010). The Hadoop Distributed File System. En <i>2010 IEEE 26th Symposium on Mass Storage Systems and Technologies (MSST)</i> (pp. 1–10). https://doi.org/10.1109/MSST.2010.5496972</p>
+<p>Soares, S. (2012). <i>Big data governance: An emerging imperative</i>. MC Press.</p>
+<p>Zaharia, M., Xin, R. S., Wendell, P., Das, T., Armbrust, M., Dave, A., Meng, X., Rosen, J., Venkataraman, S., Franklin, M. J., Ghodsi, A., Gonzalez, J., Shenker, S., &amp; Stoica, I. (2016). Apache Spark: A unified engine for big data processing. <i>Communications of the ACM, 59</i>(11), 56–65. https://doi.org/10.1145/2934664</p>
+</div>
+
+<h2>Anexo A. Instrucciones de reproducción</h2>
+<p>Requisitos: Linux, macOS, Windows con WSL o Google Colab; Python 3.10+, Java 17/21, <span class="mono">pip install -r requirements.txt</span> (pyspark 3.5 o 4.0, pandas, numpy, matplotlib). Clonar el repositorio (<span class="mono">git clone https://github.com/garganopatriciar/data-analytics-portfolio.git</span>), ingresar a la carpeta <span class="mono">06-bigdata</span> y ejecutar <span class="mono">bash run_all.sh</span> (o <span class="mono">bash run_all.sh rapido</span> para omitir el benchmark). La corrida completa demora ≈10 min con 2 núcleos y el benchmark genera ≈4 GB temporales en <span class="mono">data/bench</span>.</p>
+<table>
+<tr><th>Script</th><th>Etapa</th><th>Salida / evidencia</th></tr>
+<tr><td class="mono">00_descarga.sh</td><td>Adquisición (bronze)</td><td>data/raw/*.csv, checksums.sha256</td></tr>
+<tr><td class="mono">01_ingesta_silver.py</td><td>Armonización y calidad</td><td>data/silver (Parquet), outputs/calidad_ingesta.json</td></tr>
+<tr><td class="mono">02_gold_analisis.py</td><td>Spark SQL, ICSAP, estandarización</td><td>data/gold, outputs/gold_*.csv</td></tr>
+<tr><td class="mono">03_mapreduce/run_local.sh, rdd_spark.py</td><td>MapReduce y validación cruzada</td><td>outputs/mapreduce_resultado.tsv, "VALIDACION CRUZADA OK"</td></tr>
+<tr><td class="mono">04_clustering_mllib.py</td><td>K-Means MLlib</td><td>outputs/clusters_*.csv, clusters_silhouette.json</td></tr>
+<tr><td class="mono">05_benchmark_escalabilidad.py</td><td>Rendimiento</td><td>outputs/benchmark.json</td></tr>
+<tr><td class="mono">06_figuras.py</td><td>Visualización</td><td>outputs/figuras/*.png</td></tr>
+</table>
+<p>En un clúster Hadoop el paso MapReduce se lanza con: <span class="mono">hadoop jar hadoop-streaming-*.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input /raw/egresos/*.csv -output /out/icsap_mr</span>.</p>
+<h2>Anexo B. Evidencia de ejecución (extractos de consola)</h2>
+<pre>$ bash 03_mapreduce/run_local.sh          real 0m37.376s
+2016|estricto  71446   2017|estricto  79405   2018|estricto  82439   2019|estricto  96547
+2020|estricto  71967   2021|estricto  77113   2022|estricto 116002
+$ python3 03_mapreduce/rdd_spark.py
+2022 estricto DataFrame: 116002 MR-streaming: 116002 RDD: 116002
+VALIDACION CRUZADA OK | RDD seg: 10.4
+$ python3 04_clustering_mllib.py
+silhouette por k: {2: 0.6143, 3: 0.294, 4: 0.3476, 5: 0.3277, 6: 0.313, 7: 0.2549, 8: 0.3291}
+$ python3 01_ingesta_silver.py   → registros_silver: 1176558 | egresos_totales: 6768615 | municipios: 133</pre>
+</body></html>

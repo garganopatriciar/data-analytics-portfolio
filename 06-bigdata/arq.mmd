@@ -1,0 +1,9 @@
+flowchart LR
+  A["Fuentes<br/>Portal Datos Abiertos PBA<br/>7 CSV anuales 2016-2022<br/>(2 esquemas)"] -->|"00_descarga.sh<br/>(HTTP, idempotente)"| B[("Bronze / raw<br/>CSV sin modificar<br/>≙ HDFS /raw")]
+  B -->|"01 Spark: armonización<br/>calidad, dedupe"| C[("Silver<br/>Parquet particionado<br/>por año")]
+  B -.->|"03 Hadoop Streaming<br/>map → sort → reduce"| V{{"Validación<br/>cruzada"}}
+  C -->|"02 Spark SQL + ventanas<br/>clasificación ICSAP<br/>estandarización por edad"| D[("Gold<br/>tablas analíticas")]
+  D --> V
+  D -->|"04 MLlib K-Means"| E["Segmentación<br/>de municipios"]
+  D -->|"06 matplotlib"| F["Figuras e<br/>indicadores"]
+  C -->|"05 benchmark x1/x4/x16"| G["Evaluación de<br/>escalabilidad"]
